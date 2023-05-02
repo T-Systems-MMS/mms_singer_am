@@ -230,7 +230,8 @@ def _process_label_inv(in_dir, csv_dir, target_dir, key, phoneme_dict, mfa_csd_d
 
     # Load MFA annotations
     mfa = textgrid.openTextgrid(os.path.join(in_dir, f'{key}.TextGrid'), True)
-    mfa = pd.DataFrame(mfa.tierDict['phones'].entryList, columns=['start', 'end', 'phoneme'])
+    mfa = pd.DataFrame(mfa.getTier('phones').entries, columns=['start', 'end', 'phoneme'])
+
     mfa['phoneme'] = mfa['phoneme'].apply(lambda x: x if x else '<nosound>')
 
     # Insert <nosound> at the end of csv
