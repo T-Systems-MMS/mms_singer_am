@@ -27,7 +27,7 @@ def gen_textgrid(dataset, output, key):
             note_sequence.loc[i,'end'] = note_sequence.iloc[i+1]['start']
 
     syllables = [praatio.utilities.constants.Interval(start, end, _process_syllable(syllable)) for (start, end, _, syllable) in note_sequence.values]
-    syllables_tier = praatio.data_classes.interval_tier.IntervalTier(name='1', entryList=syllables, minT=global_start, maxT=global_end)
+    syllables_tier = praatio.data_classes.interval_tier.IntervalTier(name='1', entries=syllables, minT=global_start, maxT=global_end)
     
     tgfile = praatio.data_classes.textgrid.Textgrid(global_start, global_end)
     tgfile.addTier(syllables_tier, 1)
