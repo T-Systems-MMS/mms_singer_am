@@ -28,7 +28,7 @@ def note_conversion(frequency: float):
 
 def preprocess_speech(textgrid_path: str, wav_path: str):
     mfa = textgrid.openTextgrid(textgrid_path, True)
-    mfa = pd.DataFrame(mfa.tierDict['phones'].entryList, columns=['START', 'END', 'PHONEME'])
+    mfa = pd.DataFrame(mfa.getTier('phones').entries, columns=['START', 'END', 'PHONEME'])
     f0 = data_utils.read_f0_parselmouth(wav_path)
     
     with open(hp.phoneme_dict, 'rb') as f:
